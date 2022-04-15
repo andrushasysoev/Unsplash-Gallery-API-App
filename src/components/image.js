@@ -24,6 +24,7 @@ const PhotoComp = ({ photos }) => {
 		<a
 		  className="gallery__a"
 		  target="_blank"
+		  rel="noreferrer"
 		  href={`https://unsplash.com/@${user.username}`}
 		>
 		  {user.name}

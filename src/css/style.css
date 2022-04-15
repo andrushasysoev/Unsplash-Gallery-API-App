@@ -39,9 +39,7 @@ body {
     background: #dedede;
     -webkit-box-shadow: 0 0 1em black;
             box-shadow: 0 0 1em black;
-}
-
-.root {
+    
     overflow: hidden;
 }
 

@@ -64,7 +64,7 @@ function mapStateToProps(store) {
 		  }
 		});
 	  } else {
-		  unsplashGetPhoto(id, localStorage.getItem("token")).then((photo) => {
+		  unsplashGetPhoto(id).then((photo) => {
 		    this.getPhoto(photo);
 		  });
 	   }

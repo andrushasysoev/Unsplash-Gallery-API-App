@@ -40,7 +40,7 @@ class ImagesList extends Component {
       let page = localStorage.getItem("page");
 	  let perPage = localStorage.getItem("perPage");
 
-	  unsplashLoadPhotos(page, localStorage.getItem("token"))
+	  unsplashLoadPhotos(page)
         .then((photos) => {
           this.props.getPhotos(photos);
         })
@@ -51,7 +51,7 @@ class ImagesList extends Component {
     }
 
     getUserName() {
-	  unsplashGetUser(localStorage.getItem("token")).then((user) => {
+	  unsplashGetUser().then((user) => {
         this.props.getUserName(user);
       });
     }
