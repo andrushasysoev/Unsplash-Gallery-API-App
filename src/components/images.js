@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Loader } from '../utils/loader';
-import { tokengeturl } from '../utils/tokengeturl';
 
 import PhotoComp from '../components/image';
 
 import '../css/style.css';
 
-import { getPhotos, getUserName } from "../actions/indexAction";
+import { getPhotos, getUserInfo } from "../actions/indexAction";
 
 import {
+	unsplashLoadPhotos,
     unsplashGetUser,
-    unsplashLoadPhotos,
 } from "../api/unsplash";
 
 let itemsWereLoaded = false;
@@ -22,10 +21,8 @@ class ImagesList extends Component {
 	  super(props);
 	  console.log(props);
 
-      this.loadPhotos = this.loadPhotos.bind(this);
+	  this.loadPhotos = this.loadPhotos.bind(this);
 	  this.getUserName = this.getUserName.bind(this);
-	  
-	  tokengeturl();
 	}
 
     componentDidMount() {
@@ -40,7 +37,7 @@ class ImagesList extends Component {
       let page = localStorage.getItem("page");
 	  let perPage = localStorage.getItem("perPage");
 
-	  unsplashLoadPhotos(page)
+	  unsplashLoadPhotos(page, perPage)
         .then((photos) => {
           this.props.getPhotos(photos);
         })
@@ -52,7 +49,8 @@ class ImagesList extends Component {
 
     getUserName() {
 	  unsplashGetUser().then((user) => {
-        this.props.getUserName(user);
+        //this.props.getUserName(user);
+		this.props.getUserInfo(user);
       });
     }
 
@@ -104,8 +102,8 @@ function mapDispatchToProps(dispatch) {
 	getPhotos: (photos) => {
 	  return dispatch(getPhotos(photos));
 	},
-	getUserName: (user) => {
-	  return dispatch(getUserName(user));
+	getUserInfo: (user) => {
+	  return dispatch(getUserInfo(user));
 	}
   }
 }

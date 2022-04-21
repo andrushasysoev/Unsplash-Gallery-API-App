@@ -1,51 +1,40 @@
 import Unsplash, { toJson } from 'unsplash-js';
 
 let ACCESS_KEY = "frD62dW2dbll3h1oJ11jr7SSp1rznaAMb_9pR2FPruM",
-    SECRET_KEY = "PK8_m_E7fzVY3EOkEwAgO4O-_vicvXLrdifS1VK5N4w",
-    BEARER_TOKEN = '';
+    SECRET_KEY = "PK8_m_E7fzVY3EOkEwAgO4O-_vicvXLrdifS1VK5N4w";
 
 export const unsplash = new Unsplash({
   accessKey: ACCESS_KEY,
   secret: SECRET_KEY,
-  callbackUrl: "http://localhost:8080/photos"
+  callbackUrl: "http://localhost:3000/photos"
 });
 
-export function authenticate() {
+export const authenticateCode = () => {
 
-  BEARER_TOKEN = localStorage.getItem("bearerToken");
+  const authenticationUrl = unsplash.auth.getAuthenticationUrl([
+    "public",
+    "write_likes",
+  ]);
 
-  console.log('1', BEARER_TOKEN);
+  const queryStr = window.location.toString();
 
-  if (BEARER_TOKEN === undefined || BEARER_TOKEN === null) {
-
-    const authenticationUrl = unsplash.auth.getAuthenticationUrl([
-      "public",
-      "write_likes",
-    ]);
-
-    console.log('2', BEARER_TOKEN);
-
-    const queryStr = window.location.toString();
-
-    if (!queryStr.split('?code=')[1]) {
-      window.location.assign(authenticationUrl);
+  if (!queryStr.split('?code=')[1]) {
+    window.location.assign(authenticationUrl);
     } else {
       unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
         .then(toJson)
         .then(json => {
-          localStorage.setItem("bearerToken", json.access_token);
+          //debugger;
           unsplash.auth.setBearerToken(json.access_token);
+          localStorage.setItem("bearerToken", json.access_token);
         })
         .catch(err => console.log('Auth err', err));
     }
-  }
 }
-
-export default authenticate;
 
 
 export const unsplashGetUser = () => {
- 
+  //debugger;
   return unsplash.currentUser.profile().then(toJson);
 };
 

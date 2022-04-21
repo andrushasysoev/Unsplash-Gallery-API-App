@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import {store} from './store/configureStore';
 import {BrowserRouter, Route} from "react-router-dom";
 
-import { authenticate } from './api/unsplash.js';
+import { authenticateCode } from './api/unsplash';
 
 //список фото
 import ImagesList from "./components/images";
@@ -18,7 +18,7 @@ import './css/style.css';
 localStorage.setItem("page", 1);
 localStorage.setItem("perPage", 10);
 
-authenticate();
+authenticateCode();
 
 ReactDOM.render(
   <Provider store={store}>

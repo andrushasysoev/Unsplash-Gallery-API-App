@@ -7,7 +7,7 @@ export function getPhotos(photos) {
   };
 };
 
-export function getUserName(user) {
+export function getUserInfo(user) {
   return {
     type: GET_USERNAME,
     user,
