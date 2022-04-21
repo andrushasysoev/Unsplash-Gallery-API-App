@@ -49,7 +49,6 @@ class ImagesList extends Component {
 
     getUserName() {
 	  unsplashGetUser().then((user) => {
-        //this.props.getUserName(user);
 		this.props.getUserInfo(user);
       });
     }
