@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import currentDate from "../utils/index";
 
-import unliked from "../assets/unlike.png";
-import liked from "../assets/like.png";
+import unliked from "../img/unlike.png";
+import liked from "../img/unlike.png";
 
 
 const PhotoComp = ({ photos }) => {

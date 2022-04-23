@@ -30,7 +30,7 @@ class ImagesList extends Component {
 		this.loadPhotos();
 		itemsWereLoaded = true;
 	  }
-	  this.getUserName();
+	  //this.getUserName();
 	}
 
     loadPhotos() {
@@ -64,6 +64,14 @@ class ImagesList extends Component {
 	  } else {
 		  return (
 			<div>
+				<button className="gallery__btn-show-more"
+				onClick={(e) => {
+				  e.preventDefault();
+				  this.getUserName();
+				}}
+			  >
+				UserName
+			  </button>
 			  <div className="gallery">
 			    <ul className="gallery__ul">
 				  {photos.map(photos => (

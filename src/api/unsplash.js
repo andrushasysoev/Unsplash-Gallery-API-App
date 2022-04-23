@@ -24,7 +24,6 @@ export const authenticateCode = () => {
       unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
         .then(toJson)
         .then(json => {
-          //debugger;
           unsplash.auth.setBearerToken(json.access_token);
           localStorage.setItem("bearerToken", json.access_token);
         })
@@ -34,7 +33,6 @@ export const authenticateCode = () => {
 
 
 export const unsplashGetUser = () => {
-  //debugger;
   return unsplash.currentUser.profile().then(toJson);
 };
 

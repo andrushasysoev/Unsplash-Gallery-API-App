@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
-import close from "../assets/left-arrow.png";
+import close from "../img/left-arrow.png";
 
 import ImagesFullSize from '../components/image-full';
 

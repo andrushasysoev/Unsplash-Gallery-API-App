@@ -24,7 +24,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Route exact path="/" />
-      <Route exact path="/photos" component={ImagesList} />
+      <Route exact path="/photos" component={ImagesList}/>
       <Route path="/photos/:id" component={ImageGet} />
     </BrowserRouter>
   </Provider>,
