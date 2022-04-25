@@ -51,6 +51,14 @@ body {
     text-align: center;
 }
 
+.logo-user {
+    font-size: 18px;
+}
+
+.logo-user__a {
+  padding: 0 8px;
+}
+
 .gallery,
 .gallery-full {
     display: -webkit-box;

@@ -57,7 +57,6 @@ class ImagesList extends Component {
 	  const {imagesPage, imageUser} = this.props;
 	  const {photos} = imagesPage;
 	
-	  //console.log(imageUser);
 	  if (photos.length === 0 && imageUser.username === undefined) {
 		return (
 		  <div><Loader /></div>
@@ -65,7 +64,18 @@ class ImagesList extends Component {
 	  } else {
 		  return (
 			<div>
-				<div className="logo__user-data">{imageUser.username}123</div>
+
+			  <div className="logo-user">
+				Профиль:
+				<a
+				  className="gallery__a logo-user__a"
+				  target="_blank"
+				  rel="noreferrer"
+				  href={`https://unsplash.com/@${imageUser.username}`}
+				>
+				  {imageUser.name}
+				</a>
+				</div>
 
 				<button className="gallery__btn-show-more"
 				onClick={(e) => {
@@ -73,7 +83,7 @@ class ImagesList extends Component {
 				  this.getUserName();
 				}}
 			  >
-				Получение информации о пользователе
+				Загрузка профиля
 			  </button>
 			  <div className="gallery">
 			    <ul className="gallery__ul">
