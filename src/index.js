@@ -16,7 +16,7 @@ import ImageGet from "./components/img";
 import './css/style.css';
 
 localStorage.setItem("page", 1);
-localStorage.setItem("perPage", 10);
+//localStorage.setItem("perPage", 10);
 
 authenticateCode();
 
