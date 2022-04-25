@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
+import { Loader } from '../utils/loader';
+
 import close from "../img/left-arrow.png";
 
 import ImagesFullSize from '../components/image-full';
@@ -23,15 +25,14 @@ class ImageGet extends Component {
   
 	
 	render() {
-	  const {imageFull} = this.props;
-	  const photo = imageFull;
+	  const photo = this.props.imageFull;
 
 	  const bgImages = {
 		backgroundImage: "url(" + close + ")",
 	  }
 
 	  if (photo === null) {
-		return (<div>Loading...</div>);
+		return (<div><Loader /></div>);
 	  } else {
 		  return (
 			<div className="gallery-full">

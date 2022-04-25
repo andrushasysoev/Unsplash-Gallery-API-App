@@ -30,20 +30,20 @@ class ImagesList extends Component {
 		this.loadPhotos();
 		itemsWereLoaded = true;
 	  }
-	  //this.getUserName();
+	  this.getUserName();
 	}
 
     loadPhotos() {
       let page = localStorage.getItem("page");
-	  let perPage = localStorage.getItem("perPage");
+	  //let perPage = localStorage.getItem("perPage");
 
-	  unsplashLoadPhotos(page, perPage)
+	  unsplashLoadPhotos(page)
         .then((photos) => {
           this.props.getPhotos(photos);
         })
         .then(() => {
           localStorage.setItem("page", +page + 1);
-		  localStorage.setItem("perPage", +perPage + 10);
+		  //localStorage.setItem("perPage", +perPage + 10);
         });
     }
 
@@ -54,23 +54,26 @@ class ImagesList extends Component {
     }
 
 	render() {
-	  const {imagesPage} = this.props;
+	  const {imagesPage, imageUser} = this.props;
 	  const {photos} = imagesPage;
-
-	  if (photos.length === 0) {
+	
+	  //console.log(imageUser);
+	  if (photos.length === 0 && imageUser.username === undefined) {
 		return (
 		  <div><Loader /></div>
 		);
 	  } else {
 		  return (
 			<div>
+				<div className="logo__user-data">{imageUser.username}123</div>
+
 				<button className="gallery__btn-show-more"
 				onClick={(e) => {
 				  e.preventDefault();
 				  this.getUserName();
 				}}
 			  >
-				UserName
+				Получение информации о пользователе
 			  </button>
 			  <div className="gallery">
 			    <ul className="gallery__ul">

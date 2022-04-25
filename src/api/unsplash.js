@@ -36,7 +36,7 @@ export const unsplashGetUser = () => {
   return unsplash.currentUser.profile().then(toJson);
 };
 
-export const unsplashLoadPhotos = (page = 1, perPage = 10) => {
+export const unsplashLoadPhotos = (page, perPage = 10) => {
 
   return unsplash.photos.listPhotos(page, perPage, "latest").then(toJson);
 };

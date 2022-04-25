@@ -4,7 +4,7 @@ import currentDate from "../utils/index";
 import { connect, useDispatch } from "react-redux";
 
 import unliked from "../img/unlike.png";
-import liked from "../img/unlike.png";
+import liked from "../img/like.png";
 
 import { toggleLike } from "../actions/toggleLike";
 
@@ -12,7 +12,7 @@ import { toggleLike } from "../actions/toggleLike";
 function ImagesFullSize(props) {
 	console.log(props);
 
-	const { id, user, urls, created_at, liked_by_user, likes } = props.photo;
+	const {id, user, urls, created_at, liked_by_user, likes} = props.imageFull.photo;
 	const dispatch = useDispatch();
 
 	const bgImages = {

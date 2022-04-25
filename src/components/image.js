@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import currentDate from "../utils/index";
 
 import unliked from "../img/unlike.png";
-import liked from "../img/unlike.png";
+import liked from "../img/like.png";
 
 
 const PhotoComp = ({ photos }) => {
