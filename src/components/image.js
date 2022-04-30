@@ -1,4 +1,6 @@
-import React, { Fragment } from 'react';
+//import React, { Fragment } from 'react';
+import React from 'react';
+
 import { Link } from "react-router-dom";
 
 import currentDate from "../utils/index";
@@ -7,8 +9,8 @@ import unliked from "../img/unlike.png";
 import liked from "../img/like.png";
 
 
-const PhotoComp = ({ photos }) => {
-	const { id, user, urls, created_at, liked_by_user, likes } = photos;
+const PhotoComp = ({ photo }) => {
+	const { id, user, urls, created_at, liked_by_user, likes } = photo;
 
     const bgImages = {
 		unliked: {
@@ -20,7 +22,7 @@ const PhotoComp = ({ photos }) => {
 	  };
 
 	return (
-	  <Fragment>
+	  <li className="gallery__li">
 		<a
 		  className="gallery__a"
 		  target="_blank"
@@ -37,7 +39,7 @@ const PhotoComp = ({ photos }) => {
 		    className="gallery__span-likes"
 			style={liked_by_user ? bgImages.liked : bgImages.unliked}
 		  >{likes} Нравится</span>
-	  </Fragment>
+      </li>
 	);
 };
 

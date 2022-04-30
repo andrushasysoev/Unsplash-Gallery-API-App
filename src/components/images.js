@@ -35,7 +35,6 @@ class ImagesList extends Component {
 
     loadPhotos() {
       let page = localStorage.getItem("page");
-	  //let perPage = localStorage.getItem("perPage");
 
 	  unsplashLoadPhotos(page)
         .then((photos) => {
@@ -43,7 +42,6 @@ class ImagesList extends Component {
         })
         .then(() => {
           localStorage.setItem("page", +page + 1);
-		  //localStorage.setItem("perPage", +perPage + 10);
         });
     }
 
@@ -57,7 +55,7 @@ class ImagesList extends Component {
 	  const {imagesPage, imageUser} = this.props;
 	  const {photos} = imagesPage;
 	
-	  if (photos.length === 0 && imageUser.username === undefined) {
+	  if (photos.length === 0) {
 		return (
 		  <div><Loader /></div>
 		);
@@ -87,11 +85,13 @@ class ImagesList extends Component {
 			  </button>
 			  <div className="gallery">
 			    <ul className="gallery__ul">
-				  {photos.map(photos => (
-				    <li key={photos.id} className="gallery__li">
-					  <PhotoComp key={photos.id} photos={photos} />
-				    </li>
-				  ))}
+				  {
+				    photos.map((photo, index) => {
+				      return (
+					    <PhotoComp key={index} photo={photo} />
+					  )
+				    })
+				  }
 			    </ul>
 			  </div>
 

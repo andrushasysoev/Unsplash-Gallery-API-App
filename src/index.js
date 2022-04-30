@@ -16,17 +16,21 @@ import ImageGet from "./components/img";
 import './css/style.css';
 
 localStorage.setItem("page", 1);
-//localStorage.setItem("perPage", 10);
 
-authenticateCode();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Route exact path="/" />
-      <Route exact path="/photos" component={ImagesList}/>
-      <Route path="/photos/:id" component={ImageGet} />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById("root")
-);
+export const renderFunc = () => {
+
+  ReactDOM.render(
+   <Provider store={store}>
+     <BrowserRouter>
+       <Route exact path="/" />
+       <Route exact path="/photos" component={ImagesList}/>; 
+       <Route path="/photos/:id" component={ImageGet} />
+     </BrowserRouter>
+   </Provider>,
+   document.getElementById("root")
+ );
+
+}
+
+authenticateCode(renderFunc);

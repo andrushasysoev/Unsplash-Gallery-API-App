@@ -9,10 +9,11 @@ import liked from "../img/like.png";
 import { toggleLike } from "../actions/toggleLike";
 
 
-function ImagesFullSize(props) {
-	console.log(props);
+const ImagesFullSize = ({ imageFull }) => {
+	const {photo} = imageFull;
+	const { id, user, urls, created_at, liked_by_user, likes } = photo;
+	
 
-	const {id, user, urls, created_at, liked_by_user, likes} = props.imageFull.photo;
 	const dispatch = useDispatch();
 
 	const bgImages = {
@@ -26,7 +27,7 @@ function ImagesFullSize(props) {
 
 	const toggleLikes = (e) => {
 	  e.preventDefault();
-	  dispatch(toggleLike(props.photo, id))
+	  dispatch(toggleLike(photo, id))
 	}
 
 	return (
