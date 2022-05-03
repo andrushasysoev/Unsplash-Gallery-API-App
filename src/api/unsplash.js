@@ -10,7 +10,7 @@ export const unsplash = new Unsplash({
 });
 
 
-export const authenticateCode = (callback) => {
+export const authenticateCode = (successfulAuthCallback) => {
 
   const authenticationUrl = unsplash.auth.getAuthenticationUrl([
     "public",
@@ -20,19 +20,17 @@ export const authenticateCode = (callback) => {
 const queryStr = window.location.toString();
 
   if (!queryStr.split('?code=')[1]) {
-  window.location.assign(authenticationUrl);
-    } else {
+    window.location.assign(authenticationUrl);
+  } else {
       unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
         .then(toJson)
         .then(json => {
           unsplash.auth.setBearerToken(json.access_token);
           localStorage.setItem("bearerToken", json.access_token);
+          successfulAuthCallback();
         })
         .catch(err => console.log('Auth err', err));
     }
-
-    setTimeout(callback, 1000);
-    //callback();
 }
 
 
@@ -59,6 +57,3 @@ export const unsplashUnlikePhoto = (id) => {
 
   return unsplash.photos.unlikePhoto(id).then(toJson);
 };
-
-
-//export const authenticateCode = () => {

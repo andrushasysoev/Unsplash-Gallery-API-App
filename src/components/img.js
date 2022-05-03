@@ -32,7 +32,9 @@ class ImageGet extends Component {
 	  }
 
 	  if (photo === null) {
-		return (<div><Loader /></div>);
+		return (
+		  <div><Loader /></div>
+		);
 	  } else {
 		  return (
 			<div className="gallery-full">
