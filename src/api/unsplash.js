@@ -11,20 +11,33 @@ export const unsplash = new Unsplash({
 
 
 export const authenticateCode = (successfulAuthCallback) => {
-
+  
   const authenticationUrl = unsplash.auth.getAuthenticationUrl([
     "public",
     "write_likes",
   ]);
 
+  console.log(authenticationUrl, 'authUrl');
+
 const queryStr = window.location.toString();
 
+  console.log(queryStr, 'queryStr-111');
+
   if (!queryStr.split('?code=')[1]) {
+
+  console.log(queryStr.split('?code=')[1], 'queryStr-222');
+
     window.location.assign(authenticationUrl);
+
+  console.log(window.location.assign(authenticationUrl), '333');
+
   } else {
       unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
         .then(toJson)
-        .then(json => {
+        .then((json) => {
+
+        console.log(json, 'Succ');
+
           unsplash.auth.setBearerToken(json.access_token);
           localStorage.setItem("bearerToken", json.access_token);
           successfulAuthCallback();
