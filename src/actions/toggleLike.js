@@ -21,14 +21,12 @@ export function toggleLike(photo, id) {
 
   return function(dispatch) {
 
-    const token = localStorage.getItem("token");
-
     if (photo.liked_by_user) {
-      unsplashUnlikePhoto(id, token)
+      unsplashUnlikePhoto(id)
         .then(json => dispatch(unLikeAction(json.photo))
       );
     } else {
-      unsplashLikePhoto(id, token)
+      unsplashLikePhoto(id)
         .then(json => dispatch(addLikeAction(json.photo))
       );
     }

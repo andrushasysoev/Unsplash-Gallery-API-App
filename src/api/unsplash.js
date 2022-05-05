@@ -1,7 +1,7 @@
 import Unsplash, { toJson } from 'unsplash-js';
 
 let ACCESS_KEY = "frD62dW2dbll3h1oJ11jr7SSp1rznaAMb_9pR2FPruM",
-    SECRET_KEY = "PK8_m_E7fzVY3EOkEwAgO4O-_vicvXLrdifS1VK5N4w";
+    SECRET_KEY = "PK8_m_E7fzVY3EOkEwAgO4O-_vicvXLrdifS1VK5N4w"
 
 export const unsplash = new Unsplash({
   accessKey: ACCESS_KEY,
@@ -12,37 +12,44 @@ export const unsplash = new Unsplash({
 
 export const authenticateCode = (successfulAuthCallback) => {
   
-  const authenticationUrl = unsplash.auth.getAuthenticationUrl([
-    "public",
-    "write_likes",
-  ]);
+  let bearerToken = localStorage.getItem("bearerToken"); //debugger;
+  console.log(bearerToken, 'bearerToken-111');
+
+  
+  if (!bearerToken) {
+    const authenticationUrl = unsplash.auth.getAuthenticationUrl([
+      "public",
+      "write_likes",
+    ]);
 
   console.log(authenticationUrl, 'authUrl');
 
-const queryStr = window.location.toString();
 
-  console.log(queryStr, 'queryStr-111');
+  const queryStr = window.location.toString(); //debugger;
 
-  if (!queryStr.split('?code=')[1]) {
+    if (!queryStr.split('?code=')[1]) {
+      window.location.assign(authenticationUrl); //debugger;
+    } else {
+        unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
+          .then(toJson)
+          .then((json) => { //debugger;
 
-  console.log(queryStr.split('?code=')[1], 'queryStr-222');
-
-    window.location.assign(authenticationUrl);
-
-  console.log(window.location.assign(authenticationUrl), '333');
-
-  } else {
-      unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
-        .then(toJson)
-        .then((json) => {
-
-        console.log(json, 'Succ');
+          console.log(json, 'Succ');
 
           unsplash.auth.setBearerToken(json.access_token);
           localStorage.setItem("bearerToken", json.access_token);
           successfulAuthCallback();
+
+          console.log(bearerToken, 'bearerToken-222');
         })
         .catch(err => console.log('Auth err', err));
+      }
+
+    } else {
+      console.log(bearerToken, 'bearerToken-333');
+
+      unsplash.auth.setBearerToken(bearerToken);
+      successfulAuthCallback();
     }
 }
 
