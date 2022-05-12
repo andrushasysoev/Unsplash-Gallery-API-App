@@ -17,7 +17,6 @@ class ImageGet extends Component {
 
 	constructor(props) {
 	  super(props);
-	  console.log(props);
 
 	  const id = window.location.pathname.split("photos/")[1];
 	  this.props.getImageFromStore(id);
@@ -55,6 +54,8 @@ class ImageGet extends Component {
 };
 
 function mapStateToProps(store) {
+	console.log('mapStateToProps-img', store);
+
   return {
 	imagesPage: store.imagesPage,
 	imageFull: store.imageFull,
@@ -77,6 +78,7 @@ function mapStateToProps(store) {
 }
   
 function mapDispatchToProps(dispatch) {
+
   return {
     getPhoto: (photo) => {
 	  return dispatch(getPhoto(photo));

@@ -19,7 +19,6 @@ class ImagesList extends Component {
 
 	constructor(props) {
 	  super(props);
-	  console.log(props);
 
 	  this.loadPhotos = this.loadPhotos.bind(this);
 	  this.getUserName = this.getUserName.bind(this);

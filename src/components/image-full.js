@@ -13,7 +13,7 @@ const ImagesFullSize = ({ imageFull }) => {
 	const {photo} = imageFull;
 	const { id, user, urls, created_at, liked_by_user, likes } = photo;
 	
-
+	
 	const dispatch = useDispatch();
 
 	const bgImages = {
@@ -54,6 +54,8 @@ const ImagesFullSize = ({ imageFull }) => {
 
 
 export function mapStateToProps(store) {
+	console.log('mapStateToProps', store);
+
 	return {
 	  imagesPage: store.imagesPage,
 	  imageFull: store.imageFull,

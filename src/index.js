@@ -17,11 +17,7 @@ import './css/style.css';
 
 localStorage.setItem("page", 1);
 
-
 export const renderApp = () => {
-
-  console.log('Successful authentication');
-
   ReactDOM.render(
    <Provider store={store}>
      <BrowserRouter>
@@ -32,7 +28,6 @@ export const renderApp = () => {
    </Provider>,
    document.getElementById("root")
  );
-
 }
 
 authenticateCode(renderApp);

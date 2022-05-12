@@ -6,51 +6,37 @@ let ACCESS_KEY = "frD62dW2dbll3h1oJ11jr7SSp1rznaAMb_9pR2FPruM",
 export const unsplash = new Unsplash({
   accessKey: ACCESS_KEY,
   secret: SECRET_KEY,
-  callbackUrl: "http://localhost:3000/photos"
+  callbackUrl: "http://localhost:8080/photos"
 });
 
 
 export const authenticateCode = (successfulAuthCallback) => {
   
-  const bearerToken = localStorage.getItem("bearerToken"); //debugger;
-  console.log(bearerToken, 'bearerToken-111');
-
+  const bearerToken = localStorage.getItem("bearerToken");
   
-  //if (!bearerToken) {
   const authenticationUrl = unsplash.auth.getAuthenticationUrl([
     "public",
     "write_likes",
   ]);
 
-  console.log(authenticationUrl, 'authUrl');
-
-  const queryStr = window.location.toString(); //debugger;
+  const queryStr = window.location.toString();
 
   if (!queryStr.split('?code=')[1]) {
-    window.location.assign(authenticationUrl); //debugger;
+    window.location.assign(authenticationUrl);
   } else {
 
     if (bearerToken === null || bearerToken === undefined) {
-    
-    //if (bearerToken === undefined) {
-
+  
       unsplash.auth.userAuthentication(queryStr.split('?code=')[1])
         .then(toJson)
-        .then((json) => { //debugger;
-
-        console.log(json, 'Succ');
-
-        unsplash.auth.setBearerToken(json.access_token);
-        localStorage.setItem("bearerToken", json.access_token);
-        successfulAuthCallback();
-
-        console.log(bearerToken, 'bearerToken-222');
+        .then((json) => {
+          unsplash.auth.setBearerToken(json.access_token);
+          localStorage.setItem("bearerToken", json.access_token);
+          successfulAuthCallback();
         })
         .catch(err => console.log('Auth err', err));
 
       } else {
-        console.log(bearerToken, 'bearerToken-333');
-
         unsplash.auth.setBearerToken(bearerToken);
         successfulAuthCallback();
     }
