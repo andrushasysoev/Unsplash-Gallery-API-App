@@ -54,7 +54,6 @@ class ImageGet extends Component {
 };
 
 function mapStateToProps(store) {
-	console.log('mapStateToProps-img', store);
 
   return {
 	imagesPage: store.imagesPage,

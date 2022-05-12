@@ -1,5 +1,4 @@
 // функция получения текущей даты и времени
-
 const currentDate = date => {
   
   const datenew = date ? new Date(date) : new Date();
