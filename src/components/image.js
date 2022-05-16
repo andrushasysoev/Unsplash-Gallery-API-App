@@ -30,7 +30,7 @@ const PhotoComp = ({ photo }) => {
 		>
 		  {user.name}
 	    </a>
-	    <Link to={`/photos/${id}`} className="gallery__modal">
+	    <Link to={`/photos/${id}`}>
 	      <img className="gallery__img" src={urls.small} alt=''/>
 		</Link>
 		  <span className="gallery__span-date">{currentDate(created_at)}</span>

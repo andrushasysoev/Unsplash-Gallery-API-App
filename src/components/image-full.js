@@ -9,7 +9,7 @@ import liked from "../img/like.png";
 import { toggleLike } from "../actions/toggleLike";
 
 
-const ImagesFullSize = ({ imageFull }) => {
+const ImagesFullSize = ({ imageFull	}) => {
 	const { photo } = imageFull;
 	const { id, user, urls, created_at, liked_by_user, likes } = photo;
 	

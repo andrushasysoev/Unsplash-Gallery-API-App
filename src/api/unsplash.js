@@ -6,7 +6,7 @@ let ACCESS_KEY = "frD62dW2dbll3h1oJ11jr7SSp1rznaAMb_9pR2FPruM",
 export const unsplash = new Unsplash({
   accessKey: ACCESS_KEY,
   secret: SECRET_KEY,
-  callbackUrl: "http://localhost:8080/photos"
+  callbackUrl: "http://andrushasysoev.ru/photos"
 });
 
 

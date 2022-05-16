@@ -19,8 +19,8 @@ export function photoFullReducer(state = { photo: {} }, action) {
 
     case UNLIKE_PHOTO:
       return {
-        ...state, 
-        likes: action.likes, 
+        ...state,
+        likes: action.likes,
         liked_by_user: false
       }
           
